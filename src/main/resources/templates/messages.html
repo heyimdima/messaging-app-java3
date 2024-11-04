@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Messages</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+  <!-- Sidebar for conversations -->
+  <div class="sidebar">
+    <h3>Conversations</h3>
+    <ul>
+      <li th:each="conversation : ${conversations}">
+        <a th:href="@{/messages(conversationId=${conversation.id})}"
+           th:text="${conversation.username}"
+           th:classappend="${selectedConversationId == conversation.id} ? 'active' : ''">
+        </a>
+      </li>
+    </ul>
+    <h3>Friends</h3>
+    <ul>
+      <li th:each="friend : ${friends}">
+        <a th:href="@{/messages(conversationId=${friend.id})}"
+           th:text="${friend.username}">
+        </a>
+      </li>
+    </ul>
+    <h3>All Users</h3>
+    <ul>
+      <li th:each="user : ${allUsers}">
+        <form th:action="@{/messages/addFriend}" method="post" style="display:inline;">
+          <input type="hidden" name="friendId" th:value="${user.id}" />
+          <span th:text="${user.username}"></span>
+          <button type="submit" class="add-friend-button">Add Friend</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Chat window for messages -->
+  <div class="chat-window">
+    <div class="message-list">
+      <div th:each="message : ${messages}" class="message-item"
+           th:classappend="${message.senderId == currentUserId} ? 'sent' : 'received'">
+        <p><span th:text="${message.content}">Message content</span></p>
+        <p><small th:text="${message.timestamp}">Timestamp</small></p>
+      </div>
+    </div>
+
+    <!-- Form to send a new message -->
+    <form th:action="@{/messages/send}" method="post" class="message-form">
+      <input type="hidden" name="receiverId" th:value="${selectedConversationId}"/>
+      <textarea name="content" placeholder="Type your message here" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

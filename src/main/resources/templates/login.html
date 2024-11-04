@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <style>
+    /* Centered Container */
+    .auth-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    /* Auth Form Styling */
+    .auth-form {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .auth-form h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .auth-form label {
+      display: block;
+      margin-bottom: 10px;
+      text-align: left;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    .auth-form input[type="text"],
+    .auth-form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #bdc3c7;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    .auth-form button {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      background-color: #3498db;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .auth-form p {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+
+    .auth-form a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+<div class="auth-container">
+  <div class="auth-form">
+    <h2>Login</h2>
+    <form th:action="@{/login}" method="post">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
+  </div>
+</div>
+</body>
+</html>

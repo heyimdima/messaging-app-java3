@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${pageTitle}">Messaging App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<header>
+    <h1>Messaging App</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/login}">Login</a></li>
+            <li><a th:href="@{/register}">Register</a></li>
+            <li><a th:href="@{/messages}">Messages</a></li>
+        </ul>
+    </nav>
+</header>
+<main th:fragment="content">
+    <!-- Page-specific content will be inserted here -->
+</main>
+
+<footer>
+    <p>&copy; 2023 Messaging App</p>
+</footer>
+</body>
+</html>
